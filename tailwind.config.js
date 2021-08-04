@@ -17,6 +17,17 @@ module.exports = {
     fontFamily: {
       'postcolombo':['Palette Mosaic'],
     },
+    extend: {
+      width: {
+        '600': '600px',
+      },
+      height:{
+        '275':'275px',
+      },
+      margin: {
+        '600': '71rem',
+       }
+     }
 
   },
   variants: {
