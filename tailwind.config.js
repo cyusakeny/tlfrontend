@@ -20,12 +20,14 @@ module.exports = {
     extend: {
       width: {
         '600': '600px',
+        '101':'85.99%'
       },
       height:{
         '275':'275px',
       },
       margin: {
         '600': '71rem',
+        '46':'11.55rem',
        }
      }
 

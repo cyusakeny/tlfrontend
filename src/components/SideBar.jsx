@@ -9,9 +9,9 @@ import {ReactComponent as LogoutIcon}from'/home/keny/tlfrontend/src/images/logou
 class SideBar extends Component {
     render() { 
         return (  
-            <div>
+            <div className="">
                 <nav>
-            <div className="bg-mydarkcolor flex flex-col justify between mr-600">
+            <div className="bg-mydarkcolor flex flex-col justify between mr-600 overflow-hidden h-full absolute ">
                 <div className=" mt-8 relative pl-6 pr-0.5 ml-8 mr-20 rounded-md hover:bg-yellow-color">
                <Link to="" className="text-white hover:text-black"><Homeicon className="fill-current text-gray-400  w-5 h-5 absolute left-1 insest-y-1"/>
                HOME</Link>
