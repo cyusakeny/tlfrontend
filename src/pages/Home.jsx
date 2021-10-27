@@ -9,7 +9,7 @@ import Navbar from '../components/Navbar';
 class HomePage extends Component {
     render() { 
         return (  
-            <div className="bg-mydarkcolor overflow-hidden h-full w-full absolute left-0">
+            <div className="bg-black overflow-hidden h-full w-full absolute left-0">
             <Navbar/>
             <div className="sm:pb-8 pb-2 sm:pl-20 pl-1 sm:mt-20 mt-1 sm:ml-96 ml-2"> 
               <p className="sm:ml-64 ml-1  sm:text-9xl text-7xl font-sans text-white">TYPING</p>
