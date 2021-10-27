@@ -15,21 +15,21 @@ class Navbar extends Component {
              <div className="sm:hidden mr-20">
         <MenuIcon className="fill-current text-gray-400 w-12 h-12"/>
              </div>
-             <div className="pl-56 flex flex-row justify-between mt-4 bg-mydarkcolor">
-            <div className=" relative pl-6  pr-1 mr-20 hover:bg-yellow-color rounded-md md:block hidden">
-                 <Link to="/" className="text-white hover:text-black ">
+             <div className="pl-56 flex flex-row justify-between mt-4 bg-black">
+            <div className=" relative pl-6  pr-1 mr-20 hover:bg-yellow-color rounded-md md:block text-white hover:text-black hidden">
+                 <Link to="/typing" className="">
                      <Homeicon className="fill-current text-gray-400 w-5 h-5 absolute left-1 insest-y-1"/>
-                     Home</Link></div>
-           <div className=" relative pl-6  pr-1 mr-20 hover:bg-yellow-color rounded-md md:block hidden">
-                <Link to="/" className="text-white hover:text-black">
+                     Typing</Link></div>
+           <div className=" relative pl-6  pr-1 mr-20 hover:bg-yellow-color rounded-md md:block hidden text-white hover:text-black">
+                <Link to="/competitions" className="">
                     <CompetitionIcon className="fill-current text-gray-400  w-5 h-5 absolute left-1 insest-y-1"/>
                     Competition</Link></div> 
-           <div className=" relative pl-6  pr-1 mr-20 hover:bg-yellow-color rounded-md md:block hidden"> 
-           <Link to="/" className="text-white hover:text-black">
+           <div className=" relative pl-6  pr-1 mr-20 hover:bg-yellow-color rounded-md md:block hidden text-white hover:text-black"> 
+           <Link to="/myprofile" className="">
                <MyProfileIcon className="fill-current text-gray-400 w-5 h-5 absolute left-1 insest-y-1"/>
                MyProfile</Link> </div>
-          <div  className=" relative pl-6  pr-1 mr-20 hover:bg-yellow-color rounded-md md:block hidden"> 
-          <Link to="/" className="text-white hover:text-black">
+          <div  className=" relative pl-6  pr-1 mr-20 hover:bg-yellow-color rounded-md md:block text-white hidden hover:text-black"> 
+          <Link to="/login" className="">
               <LoginIcon className="fill-current text-gray-400   w-5 h-5 absolute left-1 insest-y-1"/>
               Login</Link></div>
              </div>
