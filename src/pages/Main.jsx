@@ -10,6 +10,7 @@ import ViewMatches from './ViewMatches';
 import ViewWinners from './ViewWinners';
 import ViewRequirements from './ViewRequirements'
 import Courses from './Courses';
+import LivePage from './Live';
 class MainComponent extends Component {
     render() { 
         return (  
@@ -24,6 +25,7 @@ class MainComponent extends Component {
 <Route exact path='/viewWinners' component={ViewWinners}></Route>
 <Route exact path='/viewRequirements' component={ViewRequirements}></Route>
 <Route exact path='/courses' component={Courses}></Route>
+<Route exact path='/live' component={LivePage}></Route>
 
 </Switch>
         );

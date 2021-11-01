@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-class LivePage extends React.Component {
+import LiveSidebar from '../components/LiveSidebar';
+class LivePage extends Component {
     render() { 
         return <div>
-            <p>Live</p>
+            <LiveSidebar/>
         </div>;
     }
 }
