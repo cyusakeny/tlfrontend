@@ -34,7 +34,7 @@ class SideBar extends Component {
                 MYPROFILE</Link>
                 </div>
                 <div className=" mt-8 relative pl-6 pr-0.5 ml-8 mr-20 rounded-md hover:bg-yellow-color text-white hover:text-black">
-               <Link to="/" className=""><LiveIcon className="fill-current text-gray-400  w-5 h-5 absolute left-1 insest-y-1"/>
+               <Link to="/live" className=""><LiveIcon className="fill-current text-gray-400  w-5 h-5 absolute left-1 insest-y-1"/>
                LIVE</Link>
                 </div>
                 <div className=" mt-12 relative pl-6 ml-8 mr-16 pr-0.5 rounded-md pt-0.5 hover:bg-yellow-color text-white hover:text-black">
