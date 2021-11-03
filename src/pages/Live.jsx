@@ -12,11 +12,11 @@ class LivePage extends Component {
                 
             <div className=" pl-16 flex flex-row space-x-16  ml-99.2
              w-2/5 mt-3 ">
+                <Link className=" hover:bg-gray-100 w-24 pl-2 h-7 mt-1 
+                rounded-md shadow-md bg-white" to=""><FontAwesomeIcon icon={faHome} className="mr-1"/>Home</Link>
                 <Link className=" hover:bg-gray-100 w-24 pl-2 h-7 mt-1
-                rounded-md shadow-md bg-white"><FontAwesomeIcon icon={faHome} className="mr-1"/>Home</Link>
-                <Link className=" hover:bg-gray-100 w-24 pl-2 h-7 mt-1
-                rounded-md shadow-md bg-white"><FontAwesomeIcon icon={faKeyboard} className="mr-1"/>Typing</Link>
-                <Link className="hover:bg-gray-100 rounded-xl pt-1 w-36 h-10 ml-10 hover:shadow-lg">
+                rounded-md shadow-md bg-white" to=""><FontAwesomeIcon icon={faKeyboard} className="mr-1"/>Typing</Link>
+                <Link className="hover:bg-gray-100 rounded-xl pt-1 w-36 h-10 ml-10 hover:shadow-lg" to="">
                 <div className=" flex flex-row w-36 pl-8 ">
                <img src={ProfileImage} alt="Profile" className="rounded-full w-8 h-8"/>
                <h1 className="text-black text-sm -mt-0.5 ml-1">Maestro</h1>
@@ -32,8 +32,12 @@ class LivePage extends Component {
                </form>
             </div>
             <div className="overflow-auto bg-white ml-72 h-full mt-10 shadow-lg mr-8 space-y-2">
-            <div className="flex flex-row text-gray-700 border border-white hover:border-gray-300 hover:shadow-md 
-            rounded-md bg-gray-100">
+                <div className="flex flex-row border border-black pl-10">
+                    <p className="">100 Participants</p>
+                    <p className="">Grand Prix Monaco</p>
+                </div>
+     <div className="flex flex-row text-gray-700 border border-white hover:border-gray-300 hover:shadow-md 
+             bg-gray-100">
      <p className="pt-1 ml-2 w-16">Rank</p>
      <p className="pt-1 ml-4 w-36">Name</p>            
     <p className="pt-1 ml-4 w-12">Speed</p>
