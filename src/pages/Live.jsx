@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import LiveSidebar from '../components/LiveSidebar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import{faHome,faKeyboard,faSearch} from'@fortawesome/free-solid-svg-icons'
+import{faHome,faKeyboard,faSearch,faUsers,faBorderAll, faGamepad} from'@fortawesome/free-solid-svg-icons'
 import ProfileImage from'/home/keny/tlfrontend/src/images/stephen-curry.jpg'
 import LiveCompetitors from '../components/LiveCompetitors';
+import CompetitionImage from '/home/keny/tlfrontend/src/images/bats.jpg';
 class LivePage extends Component {
     render() { 
         return <div className="">
@@ -24,7 +25,11 @@ class LivePage extends Component {
                 </div>
                 </Link>
             </div>
-            <div className=" relative  w-72  ml-99.2 mt-8">
+            <div className=" ml-72 flex flex-row space-x-10 mt-8">
+                <p className=" w-28 px-2 rounded-md bg-white shadow-md text-gray-600 hover:bg-gray-800 hover:text-gray-100"> <FontAwesomeIcon icon={faBorderAll}/> Round 16</p>
+                <p className=" w-28 px-2 rounded-md bg-white shadow-md text-gray-600 hover:bg-gray-800 hover:text-gray-100"> <FontAwesomeIcon icon={faGamepad}/> Game 17</p>
+            </div>
+            <div className=" relative  w-72  ml-99.2 -mt-6">
              <form action="" className="flex flex-row">  <button className="shadow-md rounded-l-md border-gray-100 border-r
               w-8 h-7 bg-white "><FontAwesomeIcon icon={faSearch} className="text-gray-500 absolute left-1.5 top-1.5"/></button> 
                 <input type="text" name="" id="" placeholder="Search" className="outline-none shadow-md
@@ -32,14 +37,14 @@ class LivePage extends Component {
                </form>
             </div>
             <div className="overflow-auto bg-white ml-72 h-full mt-10 shadow-lg mr-8 space-y-2">
-                <div className="flex flex-row border border-black pl-10">
-                    <p className="">100 Participants</p>
-                    <p className="">Grand Prix Monaco</p>
+                <div className="py-8 flex flex-row space-x-32">
+                    <p className="font-bold ml-20 text-2xl">100 <FontAwesomeIcon icon={faUsers} /> PLAYERS</p>
+                    <p className="text-gray-600 text-4xl flex flex-row"><img src={CompetitionImage} alt="Competition logo" className="rounded-full w-10 h-10" /> Grand Prix Monaco</p>
                 </div>
      <div className="flex flex-row text-gray-700 border border-white hover:border-gray-300 hover:shadow-md 
              bg-gray-100">
-     <p className="pt-1 ml-2 w-16">Rank</p>
-     <p className="pt-1 ml-4 w-36">Name</p>            
+    <p className="pt-1 ml-2 w-16">Rank</p>
+    <p className="pt-1 ml-4 w-36">Name</p>            
     <p className="pt-1 ml-4 w-12">Speed</p>
     <p className="pt-1 ml-8 w-12">Accuracy</p>
     <p className="pt-1 ml-12 w-20">Typos</p>
