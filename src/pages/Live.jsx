@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import LiveSidebar from '../components/LiveSidebar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import{faHome,faKeyboard,faSearch,faUsers,faBorderAll, faCode, faGamepad} from'@fortawesome/free-solid-svg-icons'
+import{faHome,faKeyboard,faSearch,faUsers,faBorderAll, faGamepad} from'@fortawesome/free-solid-svg-icons'
 import ProfileImage from'/home/keny/tlfrontend/src/images/stephen-curry.jpg'
 import LiveCompetitors from '../components/LiveCompetitors';
 import CompetitionImage from '/home/keny/tlfrontend/src/images/bats.jpg';
