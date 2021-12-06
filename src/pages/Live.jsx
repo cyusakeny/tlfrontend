@@ -7,6 +7,9 @@ import ProfileImage from'/home/keny/tlfrontend/src/images/stephen-curry.jpg'
 import LiveCompetitors from '../components/LiveCompetitors';
 import CompetitionImage from '/home/keny/tlfrontend/src/images/bats.jpg';
 class LivePage extends Component {
+   componentDidMount(){
+       document.title="LivePage"
+   }
     render() { 
         return <div className="">
             <div className="bg-gray-100   absolute h-full w-full overflow-auto">
