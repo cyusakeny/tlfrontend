@@ -30,11 +30,11 @@ class SideBar extends Component {
                 <Link to="/myprofile" className=""><FontAwesomeIcon icon={faUser} className="fill-current  w-5 h-5 absolute left-1 insest-y-1"/>
                 MYPROFILE</Link>
                 </div>
-                <div className=" mt-8 text-white relative pl-6 pr-0.5 ml-8 mr-20 rounded-md hover:bg-yellow-color  hover:text-black">
+                <div className=" mt-12 text-white relative pl-6 pr-0.5 ml-8 mr-20 rounded-md hover:bg-yellow-color  hover:text-black">
                <Link to="/live" className=""><LiveIcon className="stroke-current stroke-2 fill-current w-5 h-5 absolute left-1 insest-y-1"/>
                LIVE</Link>
                 </div>
-                <div className=" mt-8 text-white relative pl-6 pr-0.5 ml-8 mr-20 rounded-md hover:bg-yellow-color  hover:text-black">
+                <div className=" mt-12 text-white relative pl-6 pr-0.5 ml-8 mr-20 rounded-md hover:bg-yellow-color  hover:text-black">
                <Link to="/logout" className=""><FontAwesomeIcon icon={faSignOutAlt} className="fill-current  w-5 h-5 absolute left-1 insest-y-1"/>
                LOGOUT</Link>
                 </div>

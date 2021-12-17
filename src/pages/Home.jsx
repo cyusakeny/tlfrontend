@@ -34,9 +34,8 @@ class HomePage extends Component {
             <Link to="" className=" border w-56 px-1.5 border-yellow-color  pt-1 relative 
             bg-yellow-color text-black flex flex-row hover:bg-black hover:text-white rounded">
             <p className="font-mono text-3xl">Get started</p> </Link>
-            <Link to="" className="border w-52 border-yellow-color  pl-7 pr-2  pt-0.5 relative 
-            rounded-3xl bg-yellow-color text-black flex flex-row hover:bg-black hover:text-white">
-                <PhoneIcon className="fill-current  w-6 h-7 absolute top-1 left-2.5"/>
+            <Link to="" className="border w-52 border-yellow-color  pl-7 pt-0.5 
+            rounded-xl bg-yellow-color text-black flex flex-row hover:bg-black hover:text-white">
             <p className="font-mono text-3xl">Contact</p> </Link>
              </div>
                        </div>
