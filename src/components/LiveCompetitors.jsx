@@ -13,9 +13,9 @@ const LiveCompetitors=(props)=>{
                <p className="mt-4 -ml-12 text-xs text-gray-600">Pro User</p>
                 </div>
                 </Link>
-    <p className="pt-1   w-24">34 WPM</p>
-    <p className="pt-1   w-10">90%</p>
-    <p className="pt-1  ml-4 w-20">21 words</p>
+    <p className="pt-1   w-24">{props.speed}</p>
+    <p className="pt-1   w-10">{props.accuracy}</p>
+    <p className="pt-1  ml-4 w-20">{props.score}</p>
     <p className="pt-1  ml-4 w-24">Rwanda</p>
     <p className="pt-1  ml-4 w-32">Junior Typist</p>
     <p className="pt-1  ml-4 w-56">"Ready to Rumble "</p>
