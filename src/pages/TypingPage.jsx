@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-import Popup from '../components/Popup';
 import Preview from '../components/Preview';
 import SideBar from '../components/SideBar';
-import {ReactComponent as PopIcon}from'/home/keny/tlfrontend/src/images/check-svgrepo-com.svg'
-import {ReactComponent as GoodJob}from '/home/keny/tlfrontend/src/images/GreatJob.svg';
-import {ReactComponent as CloseICon}from'/home/keny/tlfrontend/src/images/close.svg';
-import {ReactComponent as Hand}from'/home/keny/tlfrontend/src/images/hand.svg';
-import {ReactComponent as Arrow}from'/home/keny/tlfrontend/src/images/dropdown-svgrepo-com.svg';
+import {io} from'socket.io-client'
 const initialState={
     text:`Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborumnumquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentiumoptio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam   nihil, eveniet aliquid culpa officia aut!`,
     minutes:2,
@@ -16,12 +11,10 @@ const initialState={
     accuracy:0,
     missingWord:0,
     userFinished:false,
-    PopUp:false,
     Canceled:false,
 }
 class TypingPage extends Component {   
     state =initialState
-
     calcutateSpeed=()=>{
         const GivenTime= 2.5,
          currentTime=this.state.minutes+(this.state.seconds/60)
@@ -38,12 +31,12 @@ class TypingPage extends Component {
        let Percentage=0,
          GivenText = this.state.text.split(''),
          userText  =this.state.userInput.split('')
-    for (let i = 0; i < this.state.text.length; i++) {
+    for (let i = 0; i < this.state.userInput.length; i++) {
             if (GivenText[i]!==userText[i]) {
              NumberOfInaccurate++;
           }  
         }  
-        Percentage=Math.round(((this.state.text.length-NumberOfInaccurate)/this.state.text.length)*100)
+        Percentage=Math.round(((this.state.userInput.length-NumberOfInaccurate)/this.state.userInput.length)*100)
         this.setState(
             {
                 accuracy:Percentage,
@@ -51,10 +44,12 @@ class TypingPage extends Component {
             }
         )    
     }
+     
               startTimer=()=> {
-
+                const socketRef =  io.connect("http://localhost:5001",{ transports: ['websocket'] });
                 const intervalId = setInterval(() => {
                     this.calcutateSpeed()
+                    this.calculateAccuracy()
                     if (this.state.seconds!==0) {
                         this.setState(prevState => {
                             return {
@@ -71,16 +66,15 @@ class TypingPage extends Component {
                           });
                     }
                     if((this.state.seconds===0 && this.state.minutes===0)||(this.state.userFinished)||this.state.Canceled){
-                        this.calculateAccuracy()
-                        // this.HandlePopup()
                         this.setState(prevState=>{
                             return{
                              Canceled:!prevState.Canceled,
                             } 
                          })
+                         socketRef.disconnect();
                         clearInterval(intervalId);
                     }
-                 
+                    socketRef.emit("Data1",this.state.speed,this.state.accuracy);
                 }, 1000);
               }
               onUserinputChange=(e)=>{
@@ -120,12 +114,6 @@ class TypingPage extends Component {
             },500)
                      }
 
-
-        //  HandlePopup=()=>{
-        //      this.setState(prevState=>{
-        //          return{PopUp:!prevState.PopUp}
-        //                      })
-        //  }  
       StopTimer=()=>{
           this.setState({
             Canceled:true,
@@ -137,21 +125,6 @@ class TypingPage extends Component {
             <div className="">
  <SideBar/> 
            <div className="bg-gray-200  ml-46 absolute h-full w-101 overflow-hidden ">
-           <Popup trigger={this.state.PopUp}> 
-                 <div className="bg-white w-96 h-60 ml-72 mt-32 shadow-2xl ">
-                <div className="text-black bg-green-300 h-40  relative flex flex-col">
-                <CloseICon className="fill-current text-gray-700 border-2 border-gray-700 rounded absolute h-7 w-7 right-0"
-                
-                />
-                <PopIcon className="h-16 w-16 absolute left-40 mt-2"/>
-                <p className="text-xl  mt-20 ml-28 flex flex-row ">Good Job <GoodJob className="h-7 w-7"/> </p>
-                <p className="text-xl  ml-24 flex flex-row ">You Passed!!!! <Hand className="h-7 w-7"/> </p>
-                </div>
-                <Arrow className="fill-current text-green-300 -mt-7 ml-40 h-16 w-16 "/>
-                <button type="submit" className="font-sans border border-green-500 bg-green-500 w-20 h-8 hover:bg-green-900 hover:border-green-900
-                 rounded-lg text-white ml-36">Next</button>
-                 </div>
-             </Popup>
              <div className=" flex flex-row pl-80 space-x-7 mt-4 border-b-2 border-gray-400">
                <h1 className="text-7xl font-sans">TYPING</h1>
                <h1 className="text-lord font-postcolombo -mt-2 text-yellow-color">LORD</h1>

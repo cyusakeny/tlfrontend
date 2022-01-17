@@ -6,11 +6,26 @@ import{faHome,faKeyboard,faSearch,faUsers,faBorderAll, faGamepad} from'@fortawes
 import ProfileImage from'/home/keny/tlfrontend/src/images/stephen-curry.jpg'
 import LiveCompetitors from '../components/LiveCompetitors';
 import CompetitionImage from '/home/keny/tlfrontend/src/images/bats.jpg';
+import {io} from'socket.io-client'
+const socketRef =  io.connect("http://localhost:5001",{ transports: ['websocket'] });
 class LivePage extends Component {
+    state={
+         presentationdata:[]
+    }
    componentDidMount(){
        document.title="LivePage"
+       this.ReceiveData();
    }
+   ReceiveData=()=>{
+    socketRef.on("OurData",(personalInfo)=>{
+        console.log("Data received ",personalInfo)    
+        this.setState({
+            presentationdata:[... personalInfo]
+        })
+    })
+   } 
     render() { 
+        let information =[... this.state.presentationdata]
         return <div className="">
             <div className="bg-gray-100   absolute h-full w-full overflow-auto">
                 
@@ -55,13 +70,12 @@ class LivePage extends Component {
     <p className="pt-1 w-16 ml-12">Level</p>
     <p className="pt-1 ml-24">Quote</p>
                 </div>
-               <LiveCompetitors/>
-               <LiveCompetitors/>
-               <LiveCompetitors/>
-               <LiveCompetitors/>
-               <LiveCompetitors/>
-               <LiveCompetitors/>
-               <LiveCompetitors/>
+                {
+                information.map((value,index)=>{
+                    return <LiveCompetitors speed={value.speed} 
+                    score={value.id} accuracy={value.name} key={index}/>
+                })
+                }
             </div>
             </div>
             <LiveSidebar/>
