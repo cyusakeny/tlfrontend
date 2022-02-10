@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Preview from '../components/Preview';
 import SideBar from '../components/SideBar';
-import {io} from'socket.io-client'
+import {SocketContext} from'../utils/socketConnection';
 const initialState={
     text:`Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborumnumquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentiumoptio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam   nihil, eveniet aliquid culpa officia aut!`,
     minutes:2,
@@ -46,7 +46,7 @@ class TypingPage extends Component {
     }
      
               startTimer=()=> {
-                const socketRef =  io.connect("http://localhost:5001",{ transports: ['websocket'] });
+                
                 const intervalId = setInterval(() => {
                     this.calcutateSpeed()
                     this.calculateAccuracy()
@@ -71,10 +71,10 @@ class TypingPage extends Component {
                              Canceled:!prevState.Canceled,
                             } 
                          })
-                         socketRef.disconnect();
+                         this.context.disconnect();
                         clearInterval(intervalId);
                     }
-                    socketRef.emit("Data1",this.state.speed,this.state.accuracy);
+                    this.context.emit("Data1",this.state.speed,this.state.accuracy);
                 }, 1000);
               }
               onUserinputChange=(e)=>{
@@ -169,5 +169,5 @@ class TypingPage extends Component {
         );
     }
 }
- 
+TypingPage.contextType = SocketContext
 export default TypingPage;
