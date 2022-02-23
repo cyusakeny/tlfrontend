@@ -33,7 +33,7 @@ const  LiveSidebar = (props)=>{
       <button className="border border-gray-200 w-6 ml-24 bg-gray-200" onClick={HandleUpperArrow}><FontAwesomeIcon icon={faArrowAltCircleUp}/></button>
        {
            CurrentPosts.map(item=>{
-               return <LiveCompetitions key={item} name={"Maestro"+item}/>
+               return <LiveCompetitions key={item} name={"Maestro"+item} id={item}/>
            })
        }
        <button className="border border-gray-200 w-6 ml-24 bg-gray-300"onClick={HandleLowerArrow} ><FontAwesomeIcon icon={faArrowAltCircleDown}/></button>
