@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import SideBar from '../components/SideBar';
 import ProfileImage from'/home/keny/tlfrontend/src/images/avatar.png';
+import Popup from '../components/Popup';
 import {ReactComponent as EditSvg} from'/home/keny/tlfrontend/src/images/edit-button.svg'
+import Edit from '../components/Edit';
 const initialState={
     row1:"Name",
     row2:"Gender",
@@ -72,6 +74,9 @@ handlePictureUpload=(e)=>{
             <div className="">
                 <SideBar/>
                 <div className="bg-gray-100  ml-46 absolute h-full w-101 overflow-hidden"> 
+                <Popup trigger={true}>
+                  <Edit></Edit>          
+                            </Popup>
                 <div className="w-36 mt-10 h-32 ml-48">
                                      <img src={this.state.src} alt="ProfileImage"/>
                    

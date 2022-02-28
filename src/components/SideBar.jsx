@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import{faSignOutAlt,faKeyboard,faHome,faChalkboardTeacher,faTrophy, faUser} from'@fortawesome/free-solid-svg-icons'
-import {ReactComponent as MyProfileIcon} from'/home/keny/tlfrontend/src/images/profile.svg'; 
+import{faSignOutAlt,faKeyboard,faHome,faChalkboardTeacher,faTrophy, faUser} from'@fortawesome/free-solid-svg-icons' 
 import {ReactComponent as LiveIcon}from'/home/keny/tlfrontend/src/images/live.svg';
 class SideBar extends Component {
     render() { 
