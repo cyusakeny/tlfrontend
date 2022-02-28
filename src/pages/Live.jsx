@@ -6,18 +6,16 @@ import{faHome,faKeyboard,faSearch,faUsers,faBorderAll, faGamepad} from'@fortawes
 import ProfileImage from'/home/keny/tlfrontend/src/images/stephen-curry.jpg'
 import LiveCompetitors from '../components/LiveCompetitors';
 import CompetitionImage from '/home/keny/tlfrontend/src/images/bats.jpg';
-import {io} from'socket.io-client'
-const socketRef =  io.connect("http://localhost:5001",{ transports: ['websocket'] });
+import { SocketContext } from '../utils/socketConnection';
 class LivePage extends Component {
     state={
          presentationdata:[]
     }
-   componentDidMount(){
-       document.title="LivePage"
-       this.ReceiveData();
-   }
+    componentDidMount(){
+        this.ReceiveData()
+    }
    ReceiveData=()=>{
-    socketRef.on("OurData",(personalInfo)=>{
+    this.context.on("OurData",(personalInfo)=>{
         console.log("Data received ",personalInfo)    
         this.setState({
             presentationdata:[... personalInfo]
@@ -32,9 +30,9 @@ class LivePage extends Component {
             <div className=" pl-16 flex flex-row space-x-16  ml-99.2
              w-2/5 mt-3 ">
                 <Link className=" hover:bg-gray-100 w-24 pl-2 h-7 mt-1 
-                rounded-md shadow-md bg-white" to=""><FontAwesomeIcon icon={faHome} className="mr-1"/>Home</Link>
+                rounded-md shadow-md bg-white" to="/"><FontAwesomeIcon icon={faHome} className="mr-1"/>Home</Link>
                 <Link className=" hover:bg-gray-100 w-24 pl-2 h-7 mt-1
-                rounded-md shadow-md bg-white" to=""><FontAwesomeIcon icon={faKeyboard} className="mr-1"/>Typing</Link>
+                rounded-md shadow-md bg-white" to="/typing"><FontAwesomeIcon icon={faKeyboard} className="mr-1"/>Typing</Link>
                 <Link className="hover:bg-gray-100 rounded-xl pt-1 w-36 h-10 ml-10 hover:shadow-lg" to="">
                 <div className=" flex flex-row w-36 pl-8 ">
                <img src={ProfileImage} alt="Profile" className="rounded-full w-8 h-8"/>
@@ -82,5 +80,5 @@ class LivePage extends Component {
         </div>;
     }
 }
- 
+LivePage.contextType=SocketContext
 export default LivePage;
