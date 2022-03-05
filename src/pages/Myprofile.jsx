@@ -5,6 +5,8 @@ import ProfileImage from "/home/keny/tlfrontend/src/images/avatar.png";
 import Popup from "../components/Popup";
 import { ReactComponent as EditSvg } from "/home/keny/tlfrontend/src/images/edit-button.svg";
 import Edit from "../components/Edit";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLessThan } from "@fortawesome/free-solid-svg-icons";
 const initialState = {
   row1: "Name",
   row2: "Gender",
@@ -22,6 +24,8 @@ const initialState = {
   color2: "#063557",
   picture: false,
   src: ProfileImage,
+  pop: false,
+  popicon: "hidden",
 };
 class MyProfile extends Component {
   state = initialState;
@@ -68,6 +72,18 @@ class MyProfile extends Component {
     this.setState({
       picture: picture,
       src: src,
+    });
+  };
+  OpenPopup = () => {
+    this.setState({
+      pop: true,
+      popicon: "visible",
+    });
+  };
+  closePopup = () => {
+    this.setState({
+      pop: false,
+      popicon: "hidden",
     });
   };
   render() {
@@ -154,15 +170,24 @@ class MyProfile extends Component {
               {this.state.data5}
             </p>
           </div>
-          <div className="w-24  bg-blue-color-250 relative ml-96.50 mt-10 pl-10 rounded-md ">
-            <Link to="" className="text-xl text-white">
-              <EditSvg className="fill-current text-white w-5 h-5 absolute left-4 top-1 bottom-1" />
+          <div
+            className="w-24  bg-blue-color-250 relative ml-96.50 mt-10 pl-10 rounded-md "
+            onClick={this.OpenPopup}
+          >
+            <button>
+              <EditSvg className="fill-current text-white w-3 h-4 absolute left-7 top-1" />
               Edit
-            </Link>
+            </button>
           </div>
-          <Popup trigger={true}>
+          <Popup trigger={this.state.pop}>
             <Edit></Edit>
           </Popup>
+          <FontAwesomeIcon
+            icon={faLessThan}
+            className=" absolute left-96 top-12 w-3 h-4"
+            style={{ visibility: this.state.popicon }}
+            onClick={this.closePopup}
+          />
         </div>
       </div>
     );
