@@ -2,7 +2,6 @@ import { React, useState } from "react";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Avatar from "../images/avatar.png";
-import "react-image-crop/dist/ReactCrop.css";
 const Edit = () => {
   const [ProfileImage, setProfile] = useState({
     image: false,
