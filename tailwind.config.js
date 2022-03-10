@@ -76,7 +76,7 @@ module.exports = {
       },
       fontSize: {
         'lord': '3.65rem'
-      }
+      },
     }
 
   },

@@ -2,10 +2,8 @@ import { React, useState } from "react";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Avatar from "../images/avatar.png";
-import ReactCrop from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
-const Edit = (props) => {
-  const [crop, setCrop] = useState();
+const Edit = () => {
   const [ProfileImage, setProfile] = useState({
     image: false,
     src: Avatar,
@@ -21,13 +19,11 @@ const Edit = (props) => {
       <p className="ml-32 text-gray-400 text-2xl mb-4">Edit Profile</p>
       <div class="flex flex-wrap justify-center left-16 relative">
         <div class="w-6/12 sm:w-5/12 px-4">
-          <ReactCrop crop={crop} onChange={(c) => setCrop(c)}>
-            <img
-              src={ProfileImage.src}
-              alt="..."
-              class="shadow-lg rounded-full h-36 w-36 align-middle border-none"
-            />
-          </ReactCrop>
+          <img
+            src={ProfileImage.src}
+            alt="Profile pic"
+            class="shadow-lg rounded-full h-36 w-36 align-middle border-none"
+          />
         </div>
         <label className=" flex flex-col items-center w-36 px-2">
           <FontAwesomeIcon
@@ -36,10 +32,10 @@ const Edit = (props) => {
           />
           <input
             type="file"
-            name="ProfileImage"
-            id="ImageId"
+            name="profileimage"
+            id="imageid"
             className="hidden"
-            onClick={handlepic}
+            onChange={handlepic}
           />
         </label>
       </div>
