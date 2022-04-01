@@ -17,6 +17,12 @@ class ViewMatches extends Component {
       iconpop: "visible",
     });
   };
+  PopupClose = () => {
+    this.setState({
+      popup: false,
+      iconpop: "hidden",
+    });
+  };
   render() {
     return (
       <div className="">
@@ -60,6 +66,7 @@ class ViewMatches extends Component {
             <FontAwesomeIcon
               icon={faLessThan}
               className=" fill-current text-blue-600 mt-1.5"
+              onClick={this.PopupClose}
             />
           </button>
         </div>
