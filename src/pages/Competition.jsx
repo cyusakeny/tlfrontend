@@ -41,6 +41,12 @@ class CompetitionPage extends Component {
       selectedValue: event.target.value,
     });
   };
+  PopupClose = () => {
+    this.setState({
+      popup: false,
+      iconpop: "hidden",
+    });
+  };
   render() {
     const indexOfLastPost = this.state.CurrentPage * this.state.PostsPerPage;
     const indexOfFirstPost = indexOfLastPost - this.state.PostsPerPage;
@@ -104,6 +110,7 @@ class CompetitionPage extends Component {
             <FontAwesomeIcon
               icon={faLessThan}
               className=" fill-current text-blue-600 mt-1.5"
+              onClick={this.PopupClose}
             />
           </button>
         </div>

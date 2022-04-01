@@ -3,6 +3,7 @@ import Calendar from "react-calendar";
 import TimePicker from "react-time-picker";
 import { ReactMultiEmail, isEmail } from "react-multi-email";
 import "react-multi-email/style.css";
+import "react-calendar/dist/Calendar.css";
 
 const AddMatch = () => {
   const [time, ChangeTime] = useState("00:00");
@@ -14,8 +15,16 @@ const AddMatch = () => {
         Add match
       </h1>
       <div className="">
-        <Calendar onChange={ChangeDate} value={date} />
-        <TimePicker onChange={ChangeTime} value={time} />
+        <Calendar
+          onChange={ChangeDate}
+          value={date}
+          className="h-32 overflow-auto w-3 mt-10 ml-10"
+        />
+        <TimePicker
+          onChange={ChangeTime}
+          value={time}
+          className="h-auto w-3 mt-10 mb-10 ml-10"
+        />
       </div>
       <ReactMultiEmail
         placeholder="placeholder"
@@ -36,43 +45,9 @@ const AddMatch = () => {
             </div>
           );
         }}
+        className="ml-12"
       />
-      <form
-        action="addmatch"
-        method="post"
-        className="flex flex-col px-6 space-y-2 pb-10 mt-6"
-      >
-        <label className="font-sans text-gray-300">Name</label>
-        <input
-          type="text"
-          name="compname"
-          id="compid"
-          className="w-96 border-gray-300 border rounded-sm outline-none"
-        />
-        <label className="font-sans text-gray-300">Description</label>
-        <textarea
-          name="descrname"
-          id="descrid"
-          className="w-96 border-gray-300 border rounded-sm outline-none"
-          style={{ resize: "none" }}
-        ></textarea>
-        <label className="font-sans text-gray-300">Prices</label>
-        <textarea
-          name="prices"
-          id="priceid"
-          className="w-96 border-gray-300 border rounded-sm outline-none"
-          style={{ resize: "none" }}
-        ></textarea>
-        <label className="font-sans text-gray-300">
-          Number of Participants
-        </label>
-        <input
-          type="number"
-          name="contesters"
-          id="contesters"
-          className="w-96 border-gray-300 border rounded-sm outline-none text-gray-500"
-        />
-      </form>
     </div>
   );
 };
+export default AddMatch;
