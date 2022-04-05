@@ -18,6 +18,7 @@ const initialState = {
   selectedValue: "",
   Canceled: false,
   popup: true,
+  roomid: "",
 };
 class TypingPage extends Component {
   state = initialState;
@@ -83,7 +84,12 @@ class TypingPage extends Component {
         this.context.disconnect();
         clearInterval(intervalId);
       }
-      this.context.emit("Data1", this.state.speed, this.state.accuracy);
+      this.context.emit(
+        "Data1",
+        this.state.speed,
+        this.state.accuracy,
+        this.state.roomid
+      );
     }, 1000);
   };
   onUserinputChange = (e) => {
@@ -139,6 +145,15 @@ class TypingPage extends Component {
     this.setState({
       popup: false,
     });
+    if (this.state.selectedValue === "Training") {
+      this.setState({
+        roomid: "room1",
+      });
+    } else if (this.state.selectedValue === "Competition") {
+      this.setState({
+        roomid: "room2",
+      });
+    }
   };
   render() {
     return (
