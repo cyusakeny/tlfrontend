@@ -53,6 +53,9 @@ class TypingPage extends Component {
   };
 
   startTimer = () => {
+    if (!this.context.connected) {
+      this.context.connect();
+    }
     const intervalId = setInterval(() => {
       this.calcutateSpeed();
       this.calculateAccuracy();

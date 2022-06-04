@@ -1,6 +1,8 @@
 import { faRegistered, faLessThan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import AddCompetition from "../components/AddCompetition";
 import CompetitionList from "../components/CompetitionList";
 import Popup from "../components/Popup";
@@ -15,15 +17,28 @@ class CompetitionPage extends Component {
     PostsPerPage: 8,
     popup: false,
     iconpop: "hidden",
+    login: false,
   };
   componentDidMount() {
-    let PostVariables = [];
-    for (let i = 0; i < 100; i++) {
-      PostVariables.push(i);
+    const token = localStorage.getItem("token");
+    if (token != null) {
+      axios
+        .get("http://localhost:5000/competition/all/", {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          console.log("Data:", response.data);
+          this.setState({
+            posts: response.data,
+            login: true,
+          });
+        })
+        .catch((err) => {
+          return err;
+        });
     }
-    this.setState({
-      posts: PostVariables,
-    });
   }
   PopupDisplay = () => {
     this.setState({
@@ -54,68 +69,93 @@ class CompetitionPage extends Component {
       indexOfFirstPost,
       indexOfLastPost
     );
-    return (
-      <div className="">
-        <SideBar />
-        <div className="bg-gray-200  ml-46 absolute h-full w-101 overflow-auto ">
-          <button
-            className=" right-16 w-32 text-xl
-           h-auto bg-white rounded-lg hover:bg-gray-300 top-10 absolute"
-            onClick={this.PopupDisplay}
-          >
-            <FontAwesomeIcon icon={faRegistered} className="w-5 h-5" />
-            Register
-          </button>
-          <div className=" flex flex-row mt-10 space-x-36 ml-10 ">
-            <p className=" text-xl w-20 relative">
-              Name
-              <SortIcon className="absolute left-12 w-8 h-6 top-0.5 " />
-            </p>
-            <p className="text-xl  w-20 relative">
-              Begin
-              <SortIcon className="absolute left-12 w-8 h-6 top-0.5 " />
-            </p>
-            <p className="text-xl  w-16 relative">
-              End
-              <SortIcon className="absolute left-7 w-8 h-6 top-0.5 " />
-            </p>
-            <select
-              value={this.state.selectedValue}
-              className="border-2 border-gray-300 w-24 bg-white rounded-lg outline-none"
-              onChange={this.HandleInputChange}
+    if (this.state.login === true) {
+      return (
+        <div className="">
+          <SideBar />
+          <div className="bg-gray-200  ml-46 absolute h-full w-101 overflow-auto ">
+            <button
+              className=" right-16 w-32 text-xl
+             h-auto bg-white rounded-lg hover:bg-gray-300 top-10 absolute"
+              onClick={this.PopupDisplay}
             >
-              <option value="onGoing">Ongoing</option>
-              <option value="Live">Live</option>
-              <option value="Finished">Finished</option>
-            </select>
-          </div>
-          {CurrentPosts.map((item) => {
-            return <CompetitionList key={item} number={item} />;
-          })}
-          <Pagination
-            posts={this.state.posts}
-            PostsPerPage={this.state.PostsPerPage}
-            paginate={(value) => {
-              this.ChangeThePageData(value);
-            }}
-          />
-          <Popup trigger={this.state.popup}>
-            <AddCompetition></AddCompetition>
-          </Popup>
-          <button
-            className="absolute top-14 h-auto bg-white border-b-gray-700 border-b-2
-             left-60 rounded-lg px-2 w-8 hover:bg-gray-300"
-            style={{ visibility: this.state.iconpop }}
-          >
-            <FontAwesomeIcon
-              icon={faLessThan}
-              className=" fill-current text-blue-600 mt-1.5"
-              onClick={this.PopupClose}
+              <FontAwesomeIcon icon={faRegistered} className="w-5 h-5" />
+              Register
+            </button>
+            <div className=" flex flex-row mt-10 space-x-36 ml-10 ">
+              <p className=" text-xl w-20 relative">
+                Name
+                <SortIcon className="absolute left-12 w-8 h-6 top-0.5 " />
+              </p>
+              <p className="text-xl  w-20 relative">
+                Begin
+                <SortIcon className="absolute left-12 w-8 h-6 top-0.5 " />
+              </p>
+              <p className="text-xl  w-16 relative">
+                End
+                <SortIcon className="absolute left-7 w-8 h-6 top-0.5 " />
+              </p>
+              <select
+                value={this.state.selectedValue}
+                className="border-2 border-gray-300 w-24 bg-white rounded-lg outline-none"
+                onChange={this.HandleInputChange}
+              >
+                <option value="onGoing">Ongoing</option>
+                <option value="Live">Live</option>
+                <option value="Finished">Finished</option>
+              </select>
+            </div>
+            {CurrentPosts.map((item) => {
+              console.log("Item:", item.id);
+              return (
+                <CompetitionList
+                  key={item.id}
+                  id={item.id}
+                  name={item.name}
+                  begindate={item.begindate}
+                  enddate={item.enddate}
+                />
+              );
+            })}
+            <Pagination
+              posts={this.state.posts}
+              PostsPerPage={this.state.PostsPerPage}
+              paginate={(value) => {
+                this.ChangeThePageData(value);
+              }}
             />
-          </button>
+            <Popup trigger={this.state.popup}>
+              <AddCompetition></AddCompetition>
+            </Popup>
+            <button
+              className="absolute top-14 h-auto bg-white border-b-gray-700 border-b-2
+               left-60 rounded-lg px-2 w-8 hover:bg-gray-300"
+              style={{ visibility: this.state.iconpop }}
+            >
+              <FontAwesomeIcon
+                icon={faLessThan}
+                className=" fill-current text-blue-600 mt-1.5"
+                onClick={this.PopupClose}
+              />
+            </button>
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className="">
+          <SideBar />
+          <div className="bg-gray-100  ml-46 absolute h-full w-101 overflow-hidden">
+            <Link
+              to={"/login"}
+              className="left-96  bg-black p-6 text-white relative top-56"
+            >
+              Login
+            </Link>
+          </div>
+        </div>
+      );
+    }
   }
 }
 
