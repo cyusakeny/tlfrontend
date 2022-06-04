@@ -6,11 +6,33 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ReactComponent as SortIcon } from "/home/keny/tlfrontend/src/images/sort.svg";
 import Popup from "../components/Popup";
 import AddMatch from "../components/AddMatch";
+import axios from "axios";
 class ViewMatches extends Component {
   state = {
     popup: false,
     iconpop: "hidden",
+    posts: [],
+    competition: "",
+    CurrentPage: 1,
+    PostsPerPage: 8,
   };
+  componentDidMount() {
+    const id = this.props.match.params.id;
+    this.setState({
+      competition: id,
+    });
+    axios
+      .get(`http://localhost:5000/match/all/${id}`)
+      .then((response) => {
+        console.log("data:", response.data);
+        this.setState({
+          posts: response.data,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
   PopupDisplay = () => {
     this.setState({
       popup: true,
@@ -22,6 +44,26 @@ class ViewMatches extends Component {
       popup: false,
       iconpop: "hidden",
     });
+  };
+  ShowMatches = () => {
+    if (this.state.posts.length !== 0) {
+      const indexOfLastPost = this.state.CurrentPage * this.state.PostsPerPage;
+      const indexOfFirstPost = indexOfLastPost - this.state.PostsPerPage;
+      const CurrentPosts = this.state.posts.slice(
+        indexOfFirstPost,
+        indexOfLastPost
+      );
+      return CurrentPosts.map((post) => {
+        const date = new Date(post.date).toLocaleDateString();
+        return <MatchList key={post.id} date={date} />;
+      });
+    } else {
+      return (
+        <div className=" ml-80 mt-40 p-6 text-black relative ">
+          <p className="text-3xl">No matches for this competition</p>
+        </div>
+      );
+    }
   };
   render() {
     return (
@@ -48,15 +90,9 @@ class ViewMatches extends Component {
             <p className="text-xl  w-16 relative">Round</p>
             <p className="text-xl  w-16 relative">Participants</p>
           </div>
-          <MatchList />
-          <MatchList />
-          <MatchList />
-          <MatchList />
-          <MatchList />
-          <MatchList />
-          <MatchList />
+          {this.ShowMatches()}
           <Popup trigger={this.state.popup}>
-            <AddMatch></AddMatch>
+            <AddMatch competition={this.state.competition}></AddMatch>
           </Popup>
           <button
             className="absolute top-14 h-auto bg-white border-b-gray-700 border-b-2
