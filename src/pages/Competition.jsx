@@ -29,7 +29,6 @@ class CompetitionPage extends Component {
           },
         })
         .then((response) => {
-          console.log("Data:", response.data);
           this.setState({
             posts: response.data,
             login: true,
@@ -106,14 +105,15 @@ class CompetitionPage extends Component {
               </select>
             </div>
             {CurrentPosts.map((item) => {
-              console.log("Item:", item.id);
+              const begindate = new Date(item.begindate).toLocaleDateString();
+              const enddate = new Date(item.enddate).toLocaleDateString();
               return (
                 <CompetitionList
                   key={item.id}
                   id={item.id}
                   name={item.name}
-                  begindate={item.begindate}
-                  enddate={item.enddate}
+                  begindate={begindate}
+                  enddate={enddate}
                 />
               );
             })}

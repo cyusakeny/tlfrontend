@@ -13,8 +13,6 @@ const AddMatch = (props) => {
   const [saved, setSent] = useState(false);
   const SendData = async (e) => {
     e.preventDefault();
-    console.log("competition:", props.competition);
-    console.log("time:", time);
     await axios({
       method: "POST",
       url: "http://localhost:5000/match/add",
@@ -26,6 +24,7 @@ const AddMatch = (props) => {
         status: "UPCOMING",
         date: date,
         time: time,
+        users: emails,
       },
     })
       .then(() => {
