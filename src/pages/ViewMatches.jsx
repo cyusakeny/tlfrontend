@@ -24,7 +24,6 @@ class ViewMatches extends Component {
     axios
       .get(`http://localhost:5000/match/all/${id}`)
       .then((response) => {
-        console.log("data:", response.data);
         this.setState({
           posts: response.data,
         });
@@ -55,7 +54,15 @@ class ViewMatches extends Component {
       );
       return CurrentPosts.map((post) => {
         const date = new Date(post.date).toLocaleDateString();
-        return <MatchList key={post.id} date={date} />;
+        return (
+          <MatchList
+            key={post.id}
+            id={post.id}
+            date={date}
+            time={post.time}
+            status={post.status}
+          />
+        );
       });
     } else {
       return (
@@ -87,7 +94,7 @@ class ViewMatches extends Component {
               Time
               <SortIcon className="absolute left-12 w-8 h-6 top-0.5 " />
             </p>
-            <p className="text-xl  w-16 relative">Round</p>
+            <p className="text-xl  w-16 relative">Status</p>
             <p className="text-xl  w-16 relative">Participants</p>
           </div>
           {this.ShowMatches()}

@@ -22,10 +22,10 @@ class MainComponent extends Component {
         <Route exact path="/createaccount" component={CreateAccount}></Route>
         <Route exact path="/competitions" component={Competition}></Route>
         <Route exact path="/viewMatches/:id" component={ViewMatches}></Route>
-        <Route exact path="/viewWinners" component={ViewWinners}></Route>
+        <Route exact path="/viewWinners/:id" component={ViewWinners}></Route>
         <Route
           exact
-          path="/viewRequirements"
+          path="/viewRequirements/:id"
           component={ViewRequirements}
         ></Route>
         <Route exact path="/courses" component={Courses}></Route>

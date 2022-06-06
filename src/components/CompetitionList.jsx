@@ -8,7 +8,7 @@ const CompetitionList = (props) => {
     history.push(path);
   };
   const ViewRequierements = () => {
-    let path = `/ViewRequirements`;
+    let path = `/ViewRequirements/${props.id}`;
     history.push(path);
   };
   return (
