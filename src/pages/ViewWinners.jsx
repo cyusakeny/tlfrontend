@@ -10,7 +10,6 @@ class ViewWinners extends Component {
   };
   componentDidMount() {
     const id = this.props.match.params.id;
-    const token = localStorage.getItem("token");
     this.setState({
       match: id,
     });

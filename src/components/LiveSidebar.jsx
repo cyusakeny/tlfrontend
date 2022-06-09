@@ -1,35 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LiveCompetitions from "./LiveCompetions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowAltCircleDown,
   faArrowAltCircleUp,
 } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 const LiveSidebar = ({ handlechange }) => {
   const [indexOfFirstPost, setFirstPost] = useState(0);
   const [indexOfLastPost, setLastPost] = useState(7);
-  let TotalPosts = [];
-  for (let index = 0; index < 100; index++) {
-    TotalPosts.push(index);
-  }
+  const [posts, setPosts] = useState([]);
+  useEffect(async () => {
+    await axios.get("http://localhost:5000/match/live").then((response) => {
+      setPosts(response.data);
+    });
+  }, []);
   const HandleUpperArrow = () => {
     if (indexOfFirstPost > 0) {
       setFirstPost(indexOfFirstPost - 1);
-      console.log("Value 1 of firstpost:" + indexOfFirstPost);
       setLastPost(indexOfLastPost - 1);
-      console.log("Value 1 of lastpost:" + indexOfLastPost);
     }
   };
   const HandleLowerArrow = () => {
-    if (indexOfLastPost < TotalPosts.length - 1) {
+    if (indexOfLastPost < posts.length - 1) {
       setFirstPost(indexOfFirstPost + 1);
-      //   console.log("Value of firstpost:" + indexOfFirstPost);
       setLastPost(indexOfLastPost + 1);
-      //   console.log("Value of lastpost:" + indexOfLastPost);
     }
   };
-  const CurrentPosts = TotalPosts.slice(indexOfFirstPost, indexOfLastPost);
-  //   console.log("Value" + indexOfFirstPost);
+  const CurrentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
   return (
     <div className=" bg-gray-100 flex flex-col justify between w-64 space-y-6 overflow-hidden h-full absolute py-10">
       <button
@@ -41,9 +39,9 @@ const LiveSidebar = ({ handlechange }) => {
       {CurrentPosts.map((item) => {
         return (
           <LiveCompetitions
-            key={item}
-            name={"Maestro" + item}
-            id={item}
+            key={item.id}
+            name={item.competition.name}
+            id={item.id}
             handleclick={handlechange}
           />
         );
