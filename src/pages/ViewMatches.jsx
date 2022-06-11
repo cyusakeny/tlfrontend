@@ -75,8 +75,7 @@ class ViewMatches extends Component {
   render() {
     return (
       <div className="">
-        <SideBar />
-        <div className="bg-gray-200  ml-46 absolute h-full w-101 overflow-hidden ">
+        <div className="bg-gray-200  ml-46 absolute h-full w-101 overflow-auto ">
           <button
             className=" right-16 w-32 text-xl
            h-auto bg-white rounded-lg hover:bg-gray-300 top-10 absolute"
@@ -113,6 +112,7 @@ class ViewMatches extends Component {
             />
           </button>
         </div>
+        <SideBar />
       </div>
     );
   }

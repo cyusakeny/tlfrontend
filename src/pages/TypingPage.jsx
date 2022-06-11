@@ -28,6 +28,7 @@ class TypingPage extends Component {
     if (token !== null) {
       this.setState({
         roomid: this.props.match.params.room,
+        displayData: true,
       });
     }
   }
@@ -65,6 +66,12 @@ class TypingPage extends Component {
     if (!this.context.connected) {
       this.context.connect();
     }
+    if (this.state.speed !== 0 || this.state.accuracy !== 0) {
+      this.setState({
+        speed: 0,
+        accuracy: 0,
+      });
+    }
     const intervalId = setInterval(() => {
       this.calcutateSpeed();
       this.calculateAccuracy();
@@ -91,6 +98,8 @@ class TypingPage extends Component {
         this.setState((prevState) => {
           return {
             Canceled: !prevState.Canceled,
+            speed: prevState.speed,
+            accuracy: prevState.accuracy,
           };
         });
         this.context.disconnect();
@@ -160,7 +169,8 @@ class TypingPage extends Component {
   sendData = async () => {
     const token = localStorage.getItem("token");
     const score =
-      ((this.state.speed - this.state.accuracy) * 100) / this.state.missingWord;
+      ((this.state.speed - this.state.missingWord) * this.state.accuracy) /
+      1000;
     let level;
     if (this.state.roomid === "train") {
       if (score <= 40) {
@@ -182,6 +192,10 @@ class TypingPage extends Component {
         },
       });
     } else {
+      console.log("speed:", this.state.speed);
+      console.log("accuracy:", this.state.accuracy);
+      console.log("missingwords:", this.state.missingWord);
+      console.log("Score:", score);
       await axios({
         method: "POST",
         url: `http://localhost:5000/result/update/${this.state.roomid}`,
