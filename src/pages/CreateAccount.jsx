@@ -15,9 +15,9 @@ const CreateAccount = () => {
   const handlePassword = (event) => {
     const inputPassword = event.target.value;
     let Checker = [];
-    var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-    var capitalLetter = /[A-Z]/;
-    var numbers = /\d/g;
+    const format = /[!@#$%^&*()_+\-=\]{};':"\\|,.<>?]+/;
+    const capitalLetter = /[A-Z]/;
+    const numbers = /\d/g;
     if (format.test(inputPassword)) {
       Checker[0] = "t";
     } else {
