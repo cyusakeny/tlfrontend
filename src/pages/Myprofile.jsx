@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import SideBar from "../components/SideBar";
-import ProfileImage from "/home/keny/tlfrontend/src/images/avatar.png";
+import ProfileImage from "../images/avatar.png";
 import Popup from "../components/Popup";
-import { ReactComponent as EditSvg } from "/home/keny/tlfrontend/src/images/edit-button.svg";
+import { ReactComponent as EditSvg } from "../images/edit-button.svg";
 import Edit from "../components/Edit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLessThan } from "@fortawesome/free-solid-svg-icons";

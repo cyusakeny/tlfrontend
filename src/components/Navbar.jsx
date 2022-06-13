@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faKeyboard } from "@fortawesome/free-solid-svg-icons";
-import { ReactComponent as CompetitionIcon } from "/home/keny/tlfrontend/src/images/competition-cup.svg";
-import { ReactComponent as MyProfileIcon } from "/home/keny/tlfrontend/src/images/profile.svg";
-import { ReactComponent as LoginIcon } from "/home/keny/tlfrontend/src/images/login-svg.svg";
-import { ReactComponent as MenuIcon } from "/home/keny/tlfrontend/src/images/menu.svg";
+import { ReactComponent as CompetitionIcon } from "../images/competition-cup.svg";
+import { ReactComponent as MyProfileIcon } from "../images/profile.svg";
+import { ReactComponent as LoginIcon } from "../images/login-svg.svg";
+import { ReactComponent as MenuIcon } from "../images/menu.svg";
 class Navbar extends Component {
   state = {};
   render() {

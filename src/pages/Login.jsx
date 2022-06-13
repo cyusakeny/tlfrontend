@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import LogSideBar from "../components/LogSideBar";
-import { ReactComponent as MailIcon } from "/home/keny/tlfrontend/src/images/email.svg";
-import { ReactComponent as PassIcon } from "/home/keny/tlfrontend/src/images/password.svg";
-import { ReactComponent as FacebookIcon } from "/home/keny/tlfrontend/src/images/facebook.svg";
-import { ReactComponent as InstaIcon } from "/home/keny/tlfrontend/src/images/instagram.svg";
-import { ReactComponent as TwitterIcon } from "/home/keny/tlfrontend/src/images/twitter.svg";
+import { ReactComponent as MailIcon } from "../images/email.svg";
+import { ReactComponent as PassIcon } from "../images/password.svg";
+import { ReactComponent as FacebookIcon } from "../images/facebook.svg";
+import { ReactComponent as InstaIcon } from "../images/instagram.svg";
+import { ReactComponent as TwitterIcon } from "../images/twitter.svg";
 import axios from "axios";
 const Login = () => {
   const [email, SetEmail] = useState("");

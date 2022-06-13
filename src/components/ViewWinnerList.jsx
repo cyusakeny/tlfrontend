@@ -1,5 +1,5 @@
 import React from "react";
-import ProfileImage from "/home/keny/tlfrontend/src/images/avatar.png";
+import ProfileImage from "../images/avatar.png";
 const ViewWinnerList = (props) => {
   console.log("score", props.score);
   return (

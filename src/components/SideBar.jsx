@@ -9,7 +9,7 @@ import {
   faTrophy,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { ReactComponent as LiveIcon } from "/home/keny/tlfrontend/src/images/live.svg";
+import { ReactComponent as LiveIcon } from "../images/live.svg";
 const SideBar = () => {
   const history = useHistory();
   const Logout = () => {

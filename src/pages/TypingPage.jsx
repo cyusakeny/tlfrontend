@@ -20,15 +20,34 @@ const initialState = {
   Canceled: false,
   roomid: "",
   displayData: false,
+  user: "",
 };
 class TypingPage extends Component {
   state = initialState;
   componentDidMount() {
     const token = localStorage.getItem("token");
-    if (token !== null) {
+    if (token !== null && this.state.displayData === false) {
       this.setState({
         roomid: this.props.match.params.room,
+        displayData: true,
       });
+      if (this.state.user === "") {
+        const token = localStorage.getItem("token");
+        axios
+          .get("http://localhost:5000/users/user", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((response) => {
+            this.setState({
+              user: response.data.username,
+            });
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      }
     }
   }
   calcutateSpeed = () => {
@@ -65,6 +84,12 @@ class TypingPage extends Component {
     if (!this.context.connected) {
       this.context.connect();
     }
+    if (this.state.speed !== 0 || this.state.accuracy !== 0) {
+      this.setState({
+        speed: 0,
+        accuracy: 0,
+      });
+    }
     const intervalId = setInterval(() => {
       this.calcutateSpeed();
       this.calculateAccuracy();
@@ -88,14 +113,16 @@ class TypingPage extends Component {
         this.state.userFinished ||
         this.state.Canceled
       ) {
-        this.setState((prevState) => {
-          return {
-            Canceled: !prevState.Canceled,
-          };
-        });
         this.context.disconnect();
         clearInterval(intervalId);
         this.sendData();
+        this.setState((prevState) => {
+          return {
+            Canceled: !prevState.Canceled,
+            speed: 0,
+            accuracy: 0,
+          };
+        });
       }
       console.log("Our rooms:", this.state.roomid);
       if (this.state.roomid !== "train") {
@@ -103,7 +130,8 @@ class TypingPage extends Component {
           "Data1",
           this.state.speed,
           this.state.accuracy,
-          this.state.roomid
+          this.state.roomid,
+          this.state.user
         );
       }
     }, 1000);
@@ -132,8 +160,6 @@ class TypingPage extends Component {
         minutes: 2,
         seconds: 30,
         userInput: "",
-        speed: 0,
-        accuracy: 0,
         missingWord: 0,
         userFinished: false,
       });
@@ -157,43 +183,68 @@ class TypingPage extends Component {
       return <Category src={pic1} data="Bats Competition" />;
     }
   };
+  CheckIfIsNull = async (speed, accuracy) => {
+    if (isNaN(speed) === true || isNaN(accuracy) === true) {
+      this.setState((prevState) => {
+        return {
+          speed: 10,
+          accuracy: 60,
+        };
+      });
+      const score =
+        ((this.state.speed - this.state.missingWord) * this.state.accuracy) /
+        1000;
+      console.log("Speed:", this.state.speed);
+      console.log("Accuracy:", this.state.accuracy);
+      return score;
+    } else {
+      return (
+        ((this.state.speed - this.state.missingWord) * this.state.accuracy) /
+        1000
+      );
+    }
+  };
   sendData = async () => {
     const token = localStorage.getItem("token");
-    const score =
-      ((this.state.speed - this.state.accuracy) * 100) / this.state.missingWord;
-    let level;
-    if (this.state.roomid === "train") {
-      if (score <= 40) {
-        level = "JUNIOR";
-      } else if (score <= 80 && score > 40) {
-        level = "PROFFESSOR";
-      } else {
-        level = "EXPERT";
-      }
-      await axios({
-        method: "POST",
-        url: "http://localhost:5000/progress/add",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        data: {
-          level: level,
-        },
+    this.CheckIfIsNull(this.state.speed, this.state.accuracy)
+      .then(async (score) => {
+        let level;
+        if (this.state.roomid === "train") {
+          if (score <= 40) {
+            level = "JUNIOR";
+          } else if (score <= 80 && score > 40) {
+            level = "PROFFESSOR";
+          } else {
+            level = "EXPERT";
+          }
+          await axios({
+            method: "POST",
+            url: "http://localhost:5000/progress/add",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            data: {
+              level: level,
+            },
+          });
+        } else {
+          await axios({
+            method: "POST",
+            url: `http://localhost:5000/result/update/${this.state.roomid}`,
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            data: {
+              score: score,
+            },
+          });
+        }
+      })
+      .catch((err) => {
+        return err;
       });
-    } else {
-      await axios({
-        method: "POST",
-        url: `http://localhost:5000/result/update/${this.state.roomid}`,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        data: {
-          score: score,
-        },
-      });
-    }
   };
   render() {
     if (this.state.displayData === true) {
