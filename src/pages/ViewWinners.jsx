@@ -13,7 +13,7 @@ class ViewWinners extends Component {
     this.setState({
       match: id,
     });
-    axios.get(`http://localhost:5000/match/match/${id}`).then((response) => {
+    axios.get(`https://tlserver.herokuapp.com/match/${id}`).then((response) => {
       this.setState({
         posts: response.data.users,
       });

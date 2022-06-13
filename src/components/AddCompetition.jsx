@@ -15,7 +15,7 @@ const AddCompetition = () => {
     const token = localStorage.getItem("token");
     await axios({
       method: "POST",
-      url: "http://localhost:5000/competition/add",
+      url: "https://tlserver.herokuapp.com/competition/add",
       headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${token}`,

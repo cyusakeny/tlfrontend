@@ -22,7 +22,7 @@ class ViewMatches extends Component {
       competition: id,
     });
     axios
-      .get(`http://localhost:5000/match/all/${id}`)
+      .get(`https://tlserver.herokuapp.com/match/all/${id}`)
       .then((response) => {
         this.setState({
           posts: response.data,

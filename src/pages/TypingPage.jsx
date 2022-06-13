@@ -34,7 +34,7 @@ class TypingPage extends Component {
       if (this.state.user === "") {
         const token = localStorage.getItem("token");
         axios
-          .get("http://localhost:5000/users/user", {
+          .get("https://tlserver.herokuapp.com/users/user", {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -219,7 +219,7 @@ class TypingPage extends Component {
           }
           await axios({
             method: "POST",
-            url: "http://localhost:5000/progress/add",
+            url: "https://tlserver.herokuapp.com/progress/add",
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${token}`,
@@ -231,7 +231,7 @@ class TypingPage extends Component {
         } else {
           await axios({
             method: "POST",
-            url: `http://localhost:5000/result/update/${this.state.roomid}`,
+            url: `https://tlserver.herokuapp.com/result/update/${this.state.roomid}`,
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${token}`,

@@ -36,7 +36,7 @@ class MyProfile extends Component {
     const token = localStorage.getItem("token");
     if (token != null) {
       axios
-        .get("http://localhost:5000/users/user", {
+        .get("https://tlserver.herokuapp.com/users/user", {
           headers: {
             authorization: `Bearer ${token}`,
           },

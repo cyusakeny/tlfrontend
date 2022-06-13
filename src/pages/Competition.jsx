@@ -8,7 +8,7 @@ import CompetitionList from "../components/CompetitionList";
 import Popup from "../components/Popup";
 import SideBar from "../components/SideBar";
 import Pagination from "./Pagination";
-import { ReactComponent as SortIcon } from "/home/keny/tlfrontend/src/images/sort.svg";
+import { ReactComponent as SortIcon } from "../images/sort.svg";
 class CompetitionPage extends Component {
   state = {
     selectedValue: "",
@@ -23,7 +23,7 @@ class CompetitionPage extends Component {
     const token = localStorage.getItem("token");
     if (token != null) {
       axios
-        .get("http://localhost:5000/competition/all/", {
+        .get("https://tlserver.herokuapp.com/competition/all/", {
           headers: {
             authorization: `Bearer ${token}`,
           },

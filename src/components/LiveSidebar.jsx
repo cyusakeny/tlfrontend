@@ -12,9 +12,11 @@ const LiveSidebar = ({ handlechange }) => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get("http://localhost:5000/match/live").then((response) => {
-        setPosts(response.data);
-      });
+      await axios
+        .get("https://tlserver.herokuapp.com/match/live")
+        .then((response) => {
+          setPosts(response.data);
+        });
     };
     fetchData();
   }, []);

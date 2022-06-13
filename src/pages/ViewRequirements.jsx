@@ -10,7 +10,7 @@ class ViewRequirements extends Component {
     const id = this.props.match.params.id;
     const token = localStorage.getItem("token");
     axios
-      .get(`http://localhost:5000/competition/competition/${id}`, {
+      .get(`https://tlserver.herokuapp.com/competition/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
