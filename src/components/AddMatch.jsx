@@ -15,7 +15,7 @@ const AddMatch = (props) => {
     e.preventDefault();
     await axios({
       method: "POST",
-      url: "http://localhost:5000/match/add",
+      url: "https://tlserver.herokuapp.com/match/add",
       headers: {
         "Content-Type": "application/json",
       },

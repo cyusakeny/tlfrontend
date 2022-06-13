@@ -82,7 +82,7 @@ const CreateAccount = () => {
     if ((IsPasswordValid && PassWordsMatch) === true) {
       await axios({
         method: "POST",
-        url: "http://localhost:5000/users/add",
+        url: "https://tlserver.herokuapp.com/users/add",
         headers: {
           "Content-Type": "application/json",
         },

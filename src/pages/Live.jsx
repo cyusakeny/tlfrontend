@@ -27,7 +27,7 @@ class LivePage extends Component {
     if (this.state.user === "") {
       const token = localStorage.getItem("token");
       axios
-        .get("http://localhost:5000/users/user", {
+        .get("https://tlserver.herokuapp.com/users/user", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

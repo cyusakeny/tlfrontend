@@ -24,8 +24,11 @@ const MatchList = (props) => {
         alert("you came early");
       }
     } else {
-      console.log(props.date, "vs", todayDate);
-      alert("You came  very early");
+      if (props.date < todayDate) {
+        alert("You came  very early");
+      } else {
+        alert("You came  very Late");
+      }
     }
   };
   return (
