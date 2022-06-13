@@ -10,9 +10,9 @@ import {
   faBorderAll,
   faGamepad,
 } from "@fortawesome/free-solid-svg-icons";
-import ProfileImage from "/home/keny/tlfrontend/src/images/stephen-curry.jpg";
+import ProfileImage from "../images/stephen-curry.jpg";
 import LiveCompetitors from "../components/LiveCompetitors";
-import CompetitionImage from "/home/keny/tlfrontend/src/images/bats.jpg";
+import CompetitionImage from "../images/bats.jpg";
 import { SocketContext } from "../utils/socketConnection";
 import axios from "axios";
 class LivePage extends Component {
@@ -21,7 +21,7 @@ class LivePage extends Component {
     roomid: "",
     competition: "Competition Name",
     user: "",
-    displayData: false,
+    displayData: true,
   };
   componentDidMount() {
     if (this.state.user === "") {
@@ -111,10 +111,12 @@ class LivePage extends Component {
                     alt="Profile"
                     className="rounded-full w-8 h-8"
                   />
-                  <h1 className="text-black text-sm -mt-0.5 w-12 ml-1 pl-1">
-                    {this.state.user.username}
-                  </h1>
-                  <p className="mt-4 -ml-12 text-xs text-gray-600">Pro User</p>
+                  <div className="-mt-0.5 flex flex-col">
+                    <h1 className="text-black text-sm  w-12  pl-1 self-start">
+                      {this.state.user.username}
+                    </h1>
+                    <p className="self-start text-xs text-gray-600">Pro User</p>
+                  </div>
                 </div>
               </Link>
             </div>
@@ -170,7 +172,7 @@ class LivePage extends Component {
                 <p className="pt-1 ml-4 w-36">Name</p>
                 <p className="pt-1 ml-4 w-12">Speed</p>
                 <p className="pt-1 ml-8 w-12">Accuracy</p>
-                <p className="pt-1 ml-12 w-20">Typos</p>
+                <p className="pt-1 ml-12 w-20">Score</p>
                 <p className="pt-1 ml-3 w-24">Country</p>
                 <p className="pt-1 w-16 ml-12">Level</p>
                 <p className="pt-1 ml-24">Quote</p>
@@ -179,9 +181,11 @@ class LivePage extends Component {
                 return (
                   <LiveCompetitors
                     speed={value.speed}
-                    score={value.id}
-                    accuracy={value.name}
+                    score={value.score}
+                    accuracy={value.accuracy}
+                    name={value.name}
                     key={index}
+                    rank={index}
                   />
                 );
               })}

@@ -10,10 +10,13 @@ const LiveSidebar = ({ handlechange }) => {
   const [indexOfFirstPost, setFirstPost] = useState(0);
   const [indexOfLastPost, setLastPost] = useState(7);
   const [posts, setPosts] = useState([]);
-  useEffect(async () => {
-    await axios.get("http://localhost:5000/match/live").then((response) => {
-      setPosts(response.data);
-    });
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios.get("http://localhost:5000/match/live").then((response) => {
+        setPosts(response.data);
+      });
+    };
+    fetchData();
   }, []);
   const HandleUpperArrow = () => {
     if (indexOfFirstPost > 0) {

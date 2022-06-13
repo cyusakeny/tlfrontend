@@ -3,7 +3,7 @@ import MatchList from "../components/MatchList";
 import SideBar from "../components/SideBar";
 import { faRegistered, faLessThan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ReactComponent as SortIcon } from "/home/keny/tlfrontend/src/images/sort.svg";
+import { ReactComponent as SortIcon } from "../images/sort.svg";
 import Popup from "../components/Popup";
 import AddMatch from "../components/AddMatch";
 import axios from "axios";
