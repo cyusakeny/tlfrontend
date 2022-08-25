@@ -127,17 +127,17 @@ class CompetitionPage extends Component {
             <Popup trigger={this.state.popup}>
               <AddCompetition></AddCompetition>
             </Popup>
-            <button
+            <span
               className="absolute top-14 h-auto bg-white border-b-gray-700 border-b-2
                left-60 rounded-lg px-2 w-8 hover:bg-gray-300"
-              style={{ visibility: this.state.iconpop }}
+              style={{ visibility: this.state.iconpop ,cursor: "pointer",}}
             >
               <FontAwesomeIcon
                 icon={faLessThan}
                 className=" fill-current text-blue-600 mt-1.5"
                 onClick={this.PopupClose}
               />
-            </button>
+            </span>
           </div>
         </div>
       );

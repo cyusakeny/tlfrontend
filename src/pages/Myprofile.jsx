@@ -51,6 +51,16 @@ class MyProfile extends Component {
             data5: response.data.lastname,
             login: true,
           });
+           if(this.state.image===null){
+            this.setState({
+              src:ProfileImage
+            })
+           }
+           else{
+
+           }    this.setState({
+              src:"https://tlserver.herokuapp.com/"+response.data.image
+            })
         })
         .catch((err) => {
           console.log(err);
@@ -124,14 +134,7 @@ class MyProfile extends Component {
               <img src={this.state.src} alt="ProfileImage" />
 
               <label className=" flex flex-col border border-gray-color bg-gray-color items-center hover:text-white hover:bg-blue-color  w-36 px-2">
-                <span className="">Change Photo</span>
-                <input
-                  type="file"
-                  name="ProfileImage"
-                  id="ImageId"
-                  className="hidden"
-                  onChange={this.handlePictureUpload}
-                />
+                <span className="">Profile Pic</span>
               </label>
             </div>
             <div className="w-64 ml-96.50 -mt-32 font-sans max-w-xl">
@@ -148,26 +151,28 @@ class MyProfile extends Component {
             </div>
 
             <div className="flex flex-row w-9/12 space-x-40 ml-96.50 mt-6 font-sans max-w-xl border-b-2 border-gray-400">
-              <Link
+              <span
                 className="text-xl text-black  pl-4 -mb-0.5 border-blue-color-150 w-24"
                 style={{
                   color: this.state.color1,
                   borderBottom: this.state.border1,
+                  cursor: "pointer",
                 }}
                 onClick={this.changeToAbout}
               >
                 About
-              </Link>
-              <Link
+              </span>
+              <span
                 className="text-xl text-blue-color-100"
                 style={{
                   color: this.state.color2,
                   borderBottom: this.state.border2,
+                  cursor: "pointer",
                 }}
                 onClick={this.changeToProgress}
               >
                 Progress
-              </Link>
+              </span>
             </div>
             <div className="flex flex-row w-9/12 ml-96.50 mt-2 font-sans max-w-xl ">
               <p className="text-xl w-24">{this.state.row1}</p>
@@ -209,12 +214,12 @@ class MyProfile extends Component {
               </button>
             </div>
             <Popup trigger={this.state.pop}>
-              <Edit></Edit>
+              <Edit image={this.state.src}/>
             </Popup>
             <FontAwesomeIcon
               icon={faLessThan}
               className=" absolute left-96 top-12 w-3 h-4"
-              style={{ visibility: this.state.popicon }}
+              style={{ visibility: this.state.popicon ,cursor:"pointer" }}
               onClick={this.closePopup}
             />
           </div>

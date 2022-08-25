@@ -29,6 +29,7 @@ class ViewWinners extends Component {
             score={winner.result.score}
             name={winner.username}
             email={winner.email}
+            image={winner.image}
           />
         );
       });

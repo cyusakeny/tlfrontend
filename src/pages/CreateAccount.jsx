@@ -99,6 +99,9 @@ const CreateAccount = () => {
         history.push("/login");
       });
     }
+    else{
+      alert("password does not match")
+    }
   };
   return (
     <div className="">
@@ -178,7 +181,7 @@ const CreateAccount = () => {
           </select>
           <label className="font-prompt text-2xl mt-4 ">Password</label>
           <input
-            type="text"
+            type="password"
             name="Password"
             id="PasswordId"
             className=" bg-gray-color bg-opacity-50 w-72 h-8 
@@ -190,7 +193,7 @@ const CreateAccount = () => {
             Confirm Password
           </label>
           <input
-            type="text"
+            type="password"
             name="ConfirmPass"
             id="ConfirmPassId"
             className=" bg-gray-color bg-opacity-50 w-72 h-8 

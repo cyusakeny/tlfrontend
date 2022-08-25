@@ -1,5 +1,5 @@
 import React from "react";
-import Profile from "../images/stephen-curry.jpg";
+import Profile from "../images/Comp.jpg";
 const LiveCompetitions = ({ handleclick, id, name }) => {
   return (
     <div

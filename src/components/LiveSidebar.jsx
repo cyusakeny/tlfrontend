@@ -10,12 +10,16 @@ const LiveSidebar = ({ handlechange }) => {
   const [indexOfFirstPost, setFirstPost] = useState(0);
   const [indexOfLastPost, setLastPost] = useState(7);
   const [posts, setPosts] = useState([]);
+  const [status, setStatus] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       await axios
         .get("https://tlserver.herokuapp.com/match/live")
         .then((response) => {
+          if(response.data.length > 0){
           setPosts(response.data);
+        setStatus(true);
+        }
         });
     };
     fetchData();
@@ -33,6 +37,7 @@ const LiveSidebar = ({ handlechange }) => {
     }
   };
   const CurrentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  if(status===true){
   return (
     <div className=" bg-gray-100 flex flex-col justify between w-64 space-y-6 overflow-hidden h-full absolute py-10">
       <button
@@ -59,5 +64,9 @@ const LiveSidebar = ({ handlechange }) => {
       </button>
     </div>
   );
+    }
+    else{
+      return <div></div>
+    }
 };
 export default LiveSidebar;

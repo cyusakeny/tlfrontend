@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import Calendar from "react-calendar";
 import TimePicker from "react-time-picker";
 import { ReactMultiEmail, isEmail } from "react-multi-email";
-import "react-multi-email/style.css";
-import "react-calendar/dist/Calendar.css";
+import "../css/style.css"
+// import "react-calendar/dist/Calendar.css";
 import axios from "axios";
 
 const AddMatch = (props) => {
@@ -41,19 +40,23 @@ const AddMatch = (props) => {
           Add match
         </h1>
         <div className="">
-          <Calendar
-            onChange={ChangeDate}
-            value={date}
-            className="h-32 overflow-auto w-3 mt-10 ml-10"
+        <input
+            type="date"
+            name="enddate"
+            id="enddate"
+            className="w-96 border-gray-300 mx-6 mt-16  border rounded-sm outline-none text-gray-500"
+            onChange={(e) => {
+              ChangeDate(e.target.value);
+            }}
           />
           <TimePicker
             onChange={ChangeTime}
             value={time}
-            className="h-auto w-3 mt-10 mb-10 ml-10"
+            className="h-auto w-3 mt-10 mb-10 mx-6"
           />
         </div>
         <ReactMultiEmail
-          placeholder="placeholder"
+          placeholder="Players Emails"
           emails={emails}
           onChange={(_emails) => {
             setEmails(_emails);

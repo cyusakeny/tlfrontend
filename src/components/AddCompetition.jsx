@@ -34,7 +34,6 @@ const AddCompetition = () => {
       .catch((err) => {
         console.log("err:", err);
       });
-    console.log("Prices:", prices);
   };
   const NewLine = (e) => {
     if (e.target.name === "requirements") {

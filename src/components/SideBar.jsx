@@ -5,7 +5,7 @@ import {
   faSignOutAlt,
   faKeyboard,
   faHome,
-  faChalkboardTeacher,
+  // faChalkboardTeacher,
   faTrophy,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
@@ -39,7 +39,7 @@ const SideBar = () => {
               TYPE
             </Link>
           </div>
-          <div className="  mt-12 relative text-white pl-6 ml-8 mr-12 pr-0.5 rounded-md hover:bg-yellow-color text-white hover:text-black">
+          {/* <div className="  mt-12 relative text-white pl-6 ml-8 mr-12 pr-0.5 rounded-md hover:bg-yellow-color text-white hover:text-black">
             <Link to="/courses" className="">
               <FontAwesomeIcon
                 icon={faChalkboardTeacher}
@@ -47,8 +47,8 @@ const SideBar = () => {
               />
               COURSES
             </Link>
-          </div>
-          <div className="  mt-12 relative text-white pl-6 ml-8 mr-4 pr-0.5 rounded-md hover:bg-yellow-color text-white hover:text-black">
+          </div> */}
+          <div className="  mt-12 relative text-white pl-6 ml-8 mr-12 pr-0.5 rounded-md hover:bg-yellow-color text-white hover:text-black">
             <Link to="/Competitions" className="">
               <FontAwesomeIcon
                 icon={faTrophy}
@@ -57,7 +57,7 @@ const SideBar = () => {
               COMPETITION
             </Link>
           </div>
-          <div className="  mt-12 text-white relative pl-6 ml-8 mr-8 pr-0.5 rounded-md hover:bg-yellow-color text-white hover:text-black">
+          <div className="  mt-12 text-white relative pl-6 ml-8 mr-16 pr-0.5 rounded-md hover:bg-yellow-color text-white hover:text-black">
             <Link to="/myprofile" className="">
               <FontAwesomeIcon
                 icon={faUser}

@@ -12,7 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import ProfileImage from "../images/stephen-curry.jpg";
 import LiveCompetitors from "../components/LiveCompetitors";
-import CompetitionImage from "../images/bats.jpg";
+import CompetitionImage from "../images/logo.jpg";
 import { SocketContext } from "../utils/socketConnection";
 import axios from "axios";
 class LivePage extends Component {
@@ -21,7 +21,7 @@ class LivePage extends Component {
     roomid: "",
     competition: "Competition Name",
     user: "",
-    displayData: true,
+    displayData: false,
   };
   componentDidMount() {
     if (this.state.user === "") {
