@@ -51,16 +51,11 @@ class MyProfile extends Component {
             data5: response.data.lastname,
             login: true,
           });
-           if(this.state.image===null){
+           if(this.state.image!==null){
             this.setState({
-              src:ProfileImage
-            })
-           }
-           else{
-
-           }    this.setState({
               src:"https://tlserver.herokuapp.com/"+response.data.image
             })
+           }
         })
         .catch((err) => {
           console.log(err);
